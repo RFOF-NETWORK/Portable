@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>PORTABLE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="portable.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>PORTABLE</h1>
+      <p id="status-line">Initialisiere…</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Zustand</h2>
+        <pre id="state-view"></pre>
+      </section>
+
+      <section>
+        <h2>Aktionen</h2>
+        <button id="btn-register">Registrieren</button>
+        <button id="btn-login">Login</button>
+        <button id="btn-logout">Logout</button>
+        <button id="btn-toggle-net">Netz wechseln (ColdNet/WarmNet)</button>
+        <button id="btn-demo-event">Demo-Event erzeugen</button>
+      </section>
+
+      <section>
+        <h2>Events (lokal)</h2>
+        <pre id="events-view"></pre>
+      </section>
+    </main>
+  </div>
+
+  <script src="core/state-machine.js"></script>
+  <script src="core/event-store.js"></script>
+  <script src="core/identity.js"></script>
+  <script src="core/parity.js"></script>
+  <script src="core/coldnet-warmnet.js"></script>
+  <script src="core/vigilant-fetch.js"></script>
+  <script src="portable.js"></script>
+</body>
+</html>

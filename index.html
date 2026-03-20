@@ -6,14 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="portable.css" />
 </head>
+
 <body>
+
+  <!-- GLOBAL DROPDOWN (NICHT DOKU, NICHT UNIFIED) -->
+  <nav id="api-dropdown">
+    <select id="api-selector">
+      <option value="home">PORTABLE (0/9 API)</option>
+      <option value="auth">Auth‑API</option>
+      <option value="wallet">Wallet‑API</option>
+      <option value="chain">Chain‑API</option>
+      <option value="validator">Validator‑API</option>
+      <option value="launchpad">Launchpad‑API</option>
+      <option value="staking">Staking‑API</option>
+      <option value="market">Market‑API</option>
+    </select>
+  </nav>
+
   <div id="app">
+
     <header>
       <h1>PORTABLE</h1>
       <p id="status-line">Initialisiere…</p>
     </header>
 
     <main>
+
+      <!-- ORIGINAL PORTABLE SECTIONS -->
       <section>
         <h2>Zustand</h2>
         <pre id="state-view"></pre>
@@ -34,49 +53,96 @@
         <h2>Events (lokal)</h2>
         <pre id="events-view"></pre>
       </section>
+
+      <!-- ⭐ NEUE SECTION: API‑MARKTPLATZ (ECDB) ⭐ -->
+      <section id="api-marketplace">
+
+        <h2>API‑Marktplatz</h2>
+        <p>Alle PortableChain‑APIs basierend auf der PORTABLE‑API (0/9 API)</p>
+
+        <!-- ⭐ TABS (C) ⭐ -->
+        <div id="api-tabs">
+          <button data-target="auth">Auth</button>
+          <button data-target="wallet">Wallet</button>
+          <button data-target="chain">Chain</button>
+          <button data-target="validator">Validator</button>
+          <button data-target="launchpad">Launchpad</button>
+          <button data-target="staking">Staking</button>
+          <button data-target="market">Market</button>
+        </div>
+
+        <!-- ⭐ API‑CARDS (B) ⭐ -->
+        <div class="api-card" id="auth">
+          <h3>Auth‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/auth-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-auth&gt;&lt;/portablechain-auth&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="wallet">
+          <h3>Wallet‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/wallet-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-wallet&gt;&lt;/portablechain-wallet&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="chain">
+          <h3>Chain‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/chain-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-chain&gt;&lt;/portablechain-chain&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="validator">
+          <h3>Validator‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/validator-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-validator&gt;&lt;/portablechain-validator&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="launchpad">
+          <h3>Launchpad‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/launchpad-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-launchpad&gt;&lt;/portablechain-launchpad&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="staking">
+          <h3>Staking‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/staking-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-staking&gt;&lt;/portablechain-staking&gt;
+          </pre>
+        </div>
+
+        <div class="api-card" id="market">
+          <h3>Market‑API — <span class="price">1.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/market-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-market&gt;&lt;/portablechain-market&gt;
+          </pre>
+        </div>
+
+        <!-- ⭐ Unified‑API (NICHT im Dropdown) ⭐ -->
+        <div class="api-card" id="unified">
+          <h3>Unified‑API — <span class="price">9.999 € / Monat</span></h3>
+          <pre>
+&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/unified-api.js"&gt;&lt;/script&gt;
+&lt;portablechain-unified use="auth,wallet,chain,validator,launchpad,staking,market"&gt;&lt;/portablechain-unified&gt;
+          </pre>
+        </div>
+
+      </section>
+
     </main>
   </div>
 
-  <div id="auth-dialog" class="hidden">
-    <div class="auth-dialog-content">
-      <h3 id="auth-dialog-title">Registrieren</h3>
-      <label>
-        Benutzername
-        <input type="text" id="auth-username" />
-      </label>
-      <label>
-        Passwort
-        <input type="password" id="auth-password" />
-      </label>
-      <div class="auth-dialog-actions">
-        <button id="auth-confirm">OK</button>
-        <button id="auth-cancel">Abbrechen</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="settings-dialog" class="hidden">
-    <div class="settings-dialog-content">
-      <h3>Einstellungen</h3>
-      <label>
-        Neuer Benutzername
-        <input type="text" id="settings-username" />
-      </label>
-      <label>
-        Neues Passwort
-        <input type="password" id="settings-password" />
-      </label>
-      <label>
-        Neues Passwort wiederholen
-        <input type="password" id="settings-password-repeat" />
-      </label>
-      <div class="settings-dialog-actions">
-        <button id="settings-save">Speichern</button>
-        <button id="settings-cancel">Abbrechen</button>
-      </div>
-    </div>
-  </div>
-
+  <!-- ORIGINAL PORTABLE SCRIPTS -->
   <script src="core/state-machine.js"></script>
   <script src="core/event-store.js"></script>
   <script src="core/identity.js"></script>
@@ -87,5 +153,25 @@
   <script src="core/auth-ui.js"></script>
   <script src="core/settings-ui.js"></script>
   <script src="portable.js"></script>
+
+  <!-- ⭐ JS: Dropdown + Tabs Scroll ⭐ -->
+  <script>
+    document.getElementById("api-selector").addEventListener("change", (e) => {
+      const target = e.target.value;
+      if (target === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+      }
+    });
+
+    document.querySelectorAll("#api-tabs button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.target;
+        document.getElementById(target).scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+
 </body>
 </html>

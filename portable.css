@@ -51,8 +51,9 @@ button:hover {
   color: #9fa6b2;
 }
 
-/* EVENTS */
-#events-view {
+/* EVENTS – FIXED APP STYLE */
+#events-view,
+.events-scroll {
   background: #111218;
   padding: 0.75rem;
   border-radius: 4px;
@@ -119,7 +120,13 @@ button:hover {
   font-weight: bold;
 }
 
+/* HIDDEN ELEMENTS */
+.hidden {
+  display: none;
+}
+
 /* API-FRONTENDS */
+.api-frontend,
 section[id$="-frontend"] {
   margin: 2rem auto;
   padding: 1rem;
@@ -128,6 +135,7 @@ section[id$="-frontend"] {
   border-radius: 8px;
 }
 
+.api-frontend h2,
 section[id$="-frontend"] h2 {
   margin-top: 0;
 }

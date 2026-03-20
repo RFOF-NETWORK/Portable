@@ -141,3 +141,68 @@ pre {
   margin-top: 0.75rem;
   text-align: right;
 }
+/* Dropdown */
+#api-dropdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#api-selector {
+  background: #15171f;
+  color: #e5e5e5;
+  border: 1px solid #444;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Events scrollable */
+#events-view {
+  background: #111218;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+/* API Marketplace */
+#api-marketplace {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #0f1016;
+  border-radius: 8px;
+}
+
+/* Tabs */
+#api-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+#api-tabs button {
+  background: #1b1d27;
+  color: #fff;
+  border: 1px solid #333;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+/* Cards */
+.api-card {
+  background: #1a1c24;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.api-card h3 {
+  margin-top: 0;
+}
+
+.price {
+  color: #4caf50;
+  font-weight: bold;
+}

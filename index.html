@@ -26,6 +26,7 @@
         <button id="btn-logout">Logout</button>
         <button id="btn-toggle-net">Netz wechseln (ColdNet/WarmNet)</button>
         <button id="btn-demo-event">Demo-Event erzeugen</button>
+        <button id="btn-download-events">Events herunterladen</button>
       </section>
 
       <section>
@@ -35,12 +36,32 @@
     </main>
   </div>
 
+  <div id="auth-dialog" class="hidden">
+    <div class="auth-dialog-content">
+      <h3 id="auth-dialog-title">Registrieren</h3>
+      <label>
+        Benutzername
+        <input type="text" id="auth-username" />
+      </label>
+      <label>
+        Passwort
+        <input type="password" id="auth-password" />
+      </label>
+      <div class="auth-dialog-actions">
+        <button id="auth-confirm">OK</button>
+        <button id="auth-cancel">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
   <script src="core/state-machine.js"></script>
   <script src="core/event-store.js"></script>
   <script src="core/identity.js"></script>
   <script src="core/parity.js"></script>
   <script src="core/coldnet-warmnet.js"></script>
   <script src="core/vigilant-fetch.js"></script>
+  <script src="core/crypto.js"></script>
+  <script src="core/auth-ui.js"></script>
   <script src="portable.js"></script>
 </body>
 </html>

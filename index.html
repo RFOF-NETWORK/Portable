@@ -27,6 +27,7 @@
         <button id="btn-toggle-net">Netz wechseln (ColdNet/WarmNet)</button>
         <button id="btn-demo-event">Demo-Event erzeugen</button>
         <button id="btn-download-events">Events herunterladen</button>
+        <button id="btn-settings">Einstellungen</button>
       </section>
 
       <section>
@@ -54,6 +55,28 @@
     </div>
   </div>
 
+  <div id="settings-dialog" class="hidden">
+    <div class="settings-dialog-content">
+      <h3>Einstellungen</h3>
+      <label>
+        Neuer Benutzername
+        <input type="text" id="settings-username" />
+      </label>
+      <label>
+        Neues Passwort
+        <input type="password" id="settings-password" />
+      </label>
+      <label>
+        Neues Passwort wiederholen
+        <input type="password" id="settings-password-repeat" />
+      </label>
+      <div class="settings-dialog-actions">
+        <button id="settings-save">Speichern</button>
+        <button id="settings-cancel">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
   <script src="core/state-machine.js"></script>
   <script src="core/event-store.js"></script>
   <script src="core/identity.js"></script>
@@ -62,6 +85,7 @@
   <script src="core/vigilant-fetch.js"></script>
   <script src="core/crypto.js"></script>
   <script src="core/auth-ui.js"></script>
+  <script src="core/settings-ui.js"></script>
   <script src="portable.js"></script>
 </body>
 </html>

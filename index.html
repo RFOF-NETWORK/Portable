@@ -6,40 +6,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="portable.css" />
 </head>
-
 <body>
 
-  <!-- GLOBAL DROPDOWN: HOME + 7 API-FRONTENDS -->
+  <!-- GLOBAL DROPDOWN (OHNE MARKET) -->
   <nav id="api-dropdown">
     <select id="api-selector">
-      <option value="home">Home (PORTABLE + Marktplatz)</option>
+      <option value="home">Home (PORTABLE)</option>
       <option value="auth-frontend">Auth-Frontend</option>
       <option value="wallet-frontend">Wallet-Frontend</option>
       <option value="chain-frontend">Chain-Viewer</option>
       <option value="validator-frontend">Validator-Frontend</option>
       <option value="launchpad-frontend">Launchpad-Frontend</option>
       <option value="staking-frontend">Staking-Frontend</option>
-      <option value="market-frontend">Market-Frontend</option>
+      <!-- KEIN MARKET IM DROPDOWN -->
     </select>
   </nav>
 
-  <!-- HOME: PORTABLE + MARKTPLATZ -->
   <div id="app">
-
     <header id="home">
       <h1>PORTABLE</h1>
       <p id="status-line">Initialisiere…</p>
     </header>
 
     <main>
-
-      <!-- PORTABLE: ZUSTAND -->
       <section>
         <h2>Zustand</h2>
         <pre id="state-view"></pre>
       </section>
 
-      <!-- PORTABLE: AKTIONEN -->
       <section>
         <h2>Aktionen</h2>
         <button id="btn-register">Registrieren</button>
@@ -51,19 +45,17 @@
         <button id="btn-settings">Einstellungen</button>
       </section>
 
-      <!-- PORTABLE: EVENTS -->
       <section>
         <h2>Events (lokal)</h2>
-        <pre id="events-view"></pre>
+        <pre id="events-view" class="events-scroll"></pre>
       </section>
 
       <!-- API-MARKTPLATZ (ECDB) -->
       <section id="api-marketplace">
-
         <h2>API‑Marktplatz</h2>
         <p>Alle PortableChain‑APIs basierend auf der PORTABLE‑API (0/9 API)</p>
 
-        <!-- TABS -->
+        <!-- TABS (KATEGORIEN) -->
         <div id="api-tabs">
           <button data-target="auth-card">Auth</button>
           <button data-target="wallet-card">Wallet</button>
@@ -74,83 +66,107 @@
           <button data-target="market-card">Market</button>
         </div>
 
-        <!-- API-CARDS (nur Snippets) -->
-        <div class="api-card" id="auth-card">
+        <!-- CARDS (ANGEBOTE, KEINE SNIPPETS SICHTBAR) -->
+        <div class="api-card" id="auth-card" data-api="auth">
           <h3>Auth‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Sichere Registrierung, Login und Identität für PORTABLE‑basierte Anwendungen.</p>
+          <button class="btn-buy" data-api="auth">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/auth-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-auth&gt;&lt;/portablechain-auth&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="wallet-card">
+        <div class="api-card" id="wallet-card" data-api="wallet">
           <h3>Wallet‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Konten, Salden und Transaktionen für Benutzer‑Wallets.</p>
+          <button class="btn-buy" data-api="wallet">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/wallet-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-wallet&gt;&lt;/portablechain-wallet&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="chain-card">
+        <div class="api-card" id="chain-card" data-api="chain">
           <h3>Chain‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Lesender Zugriff auf die PortableChain‑Daten (Blöcke, Transaktionen, Status).</p>
+          <button class="btn-buy" data-api="chain">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/chain-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-chain&gt;&lt;/portablechain-chain&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="validator-card">
+        <div class="api-card" id="validator-card" data-api="validator">
           <h3>Validator‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Validator‑Status, Stakes und Validierungsinformationen.</p>
+          <button class="btn-buy" data-api="validator">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/validator-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-validator&gt;&lt;/portablechain-validator&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="launchpad-card">
+        <div class="api-card" id="launchpad-card" data-api="launchpad">
           <h3>Launchpad‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Token‑Launches, Projekte und Onboarding‑Flows.</p>
+          <button class="btn-buy" data-api="launchpad">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/launchpad-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-launchpad&gt;&lt;/portablechain-launchpad&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="staking-card">
+        <div class="api-card" id="staking-card" data-api="staking">
           <h3>Staking‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Staking‑Positionen, Rewards und Delegationen.</p>
+          <button class="btn-buy" data-api="staking">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/staking-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-staking&gt;&lt;/portablechain-staking&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
-        <div class="api-card" id="market-card">
+        <div class="api-card" id="market-card" data-api="market">
           <h3>Market‑API — <span class="price">1.999 € / Monat</span></h3>
-          <pre>
+          <p>Marktdaten, Order‑Bücher und Trades.</p>
+          <button class="btn-buy" data-api="market">Kaufen</button>
+          <div class="api-snippet hidden">
+            <pre>
 &lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/market-api.js"&gt;&lt;/script&gt;
 &lt;portablechain-market&gt;&lt;/portablechain-market&gt;
-          </pre>
-        </div>
-
-        <!-- Unified-API -->
-        <div class="api-card" id="unified-card">
-          <h3>Unified‑API — <span class="price">9.999 € / Monat</span></h3>
-          <pre>
-&lt;script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/unified-api.js"&gt;&lt;/script&gt;
-&lt;portablechain-unified use="auth,wallet,chain,validator,launchpad,staking,market"&gt;&lt;/portablechain-unified&gt;
-          </pre>
+            </pre>
+          </div>
         </div>
 
       </section>
-
     </main>
   </div>
 
-  <!-- AUTH / SETTINGS DIALOGE -->
+  <!-- AUTH-DIALOG (UNVERÄNDERT) -->
   <div id="auth-dialog" class="hidden">
     <div class="auth-dialog-content">
       <h3 id="auth-dialog-title">Registrieren</h3>
-      <label>Benutzername <input type="text" id="auth-username" /></label>
-      <label>Passwort <input type="password" id="auth-password" /></label>
+      <label>
+        Benutzername
+        <input type="text" id="auth-username" />
+      </label>
+      <label>
+        Passwort
+        <input type="password" id="auth-password" />
+      </label>
       <div class="auth-dialog-actions">
         <button id="auth-confirm">OK</button>
         <button id="auth-cancel">Abbrechen</button>
@@ -158,12 +174,22 @@
     </div>
   </div>
 
+  <!-- SETTINGS-DIALOG (UNVERÄNDERT) -->
   <div id="settings-dialog" class="hidden">
     <div class="settings-dialog-content">
       <h3>Einstellungen</h3>
-      <label>Neuer Benutzername <input type="text" id="settings-username" /></label>
-      <label>Neues Passwort <input type="password" id="settings-password" /></label>
-      <label>Neues Passwort wiederholen <input type="password" id="settings-password-repeat" /></label>
+      <label>
+        Neuer Benutzername
+        <input type="text" id="settings-username" />
+      </label>
+      <label>
+        Neues Passwort
+        <input type="password" id="settings-password" />
+      </label>
+      <label>
+        Neues Passwort wiederholen
+        <input type="password" id="settings-password-repeat" />
+      </label>
       <div class="settings-dialog-actions">
         <button id="settings-save">Speichern</button>
         <button id="settings-cancel">Abbrechen</button>
@@ -171,7 +197,67 @@
     </div>
   </div>
 
-  <!-- PORTABLE SCRIPTS -->
+  <!-- BUY-DIALOG (KAUF-FLOW, KEINE ECHTE ZAHLUNG) -->
+  <div id="buy-dialog" class="hidden">
+    <div class="buy-dialog-content">
+      <h3>API kaufen</h3>
+      <p id="buy-api-name"></p>
+      <p>
+        Bitte überweisen Sie den Betrag auf folgende IBAN:<br />
+        <strong>DE93 3701 9000 1011 3974 50</strong>
+      </p>
+      <p>Nach Zahlung können Sie die API in diesem Client freischalten.</p>
+      <div class="buy-dialog-actions">
+        <button id="buy-confirm">Ich habe bezahlt</button>
+        <button id="buy-cancel">Abbrechen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- API-FRONTENDS (NUR SICHTBAR BEI LIZENZ) -->
+  <section id="auth-frontend" class="api-frontend hidden" data-api="auth">
+    <h2>Auth-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/auth-api.js"></script>
+    <portablechain-auth></portablechain-auth>
+  </section>
+
+  <section id="wallet-frontend" class="api-frontend hidden" data-api="wallet">
+    <h2>Wallet-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/wallet-api.js"></script>
+    <portablechain-wallet></portablechain-wallet>
+  </section>
+
+  <section id="chain-frontend" class="api-frontend hidden" data-api="chain">
+    <h2>Chain-Viewer</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/chain-api.js"></script>
+    <portablechain-chain></portablechain-chain>
+  </section>
+
+  <section id="validator-frontend" class="api-frontend hidden" data-api="validator">
+    <h2>Validator-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/validator-api.js"></script>
+    <portablechain-validator></portablechain-validator>
+  </section>
+
+  <section id="launchpad-frontend" class="api-frontend hidden" data-api="launchpad">
+    <h2>Launchpad-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/launchpad-api.js"></script>
+    <portablechain-launchpad></portablechain-launchpad>
+  </section>
+
+  <section id="staking-frontend" class="api-frontend hidden" data-api="staking">
+    <h2>Staking-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/staking-api.js"></script>
+    <portablechain-staking></portablechain-staking>
+  </section>
+
+  <section id="market-frontend" class="api-frontend hidden" data-api="market">
+    <h2>Market-Frontend</h2>
+    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/market-api.js"></script>
+    <portablechain-market></portablechain-market>
+  </section>
+
+  <!-- CORE-SCRIPTS (UNVERÄNDERT) -->
   <script src="core/state-machine.js"></script>
   <script src="core/event-store.js"></script>
   <script src="core/identity.js"></script>
@@ -183,68 +269,157 @@
   <script src="core/settings-ui.js"></script>
   <script src="portable.js"></script>
 
-  <!-- 7 API-FRONTENDS -->
-  <section id="auth-frontend">
-    <h2>Auth-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/auth-api.js"></script>
-    <portablechain-auth></portablechain-auth>
-  </section>
-
-  <section id="wallet-frontend">
-    <h2>Wallet-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/wallet-api.js"></script>
-    <portablechain-wallet></portablechain-wallet>
-  </section>
-
-  <section id="chain-frontend">
-    <h2>Chain-Viewer</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/chain-api.js"></script>
-    <portablechain-chain></portablechain-chain>
-  </section>
-
-  <section id="validator-frontend">
-    <h2>Validator-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/validator-api.js"></script>
-    <portablechain-validator></portablechain-validator>
-  </section>
-
-  <section id="launchpad-frontend">
-    <h2>Launchpad-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/launchpad-api.js"></script>
-    <portablechain-launchpad></portablechain-launchpad>
-  </section>
-
-  <section id="staking-frontend">
-    <h2>Staking-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/staking-api.js"></script>
-    <portablechain-staking></portablechain-staking>
-  </section>
-
-  <section id="market-frontend">
-    <h2>Market-Frontend</h2>
-    <script src="https://cdn.jsdelivr.net/gh/RFOF-NETWORK/PortableChain/market-api.js"></script>
-    <portablechain-market></portablechain-market>
-  </section>
-
-  <!-- JS: Dropdown + Tabs Scroll -->
+  <!-- LIZENZ- UND UI-LOGIK -->
   <script>
-    document.getElementById("api-selector").addEventListener("change", (e) => {
-      const target = e.target.value;
-      if (target === "home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      } else {
-        const el = document.getElementById(target);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }
-    });
+    (function () {
+      const STORAGE_KEY = "portable_licenses_v1";
 
-    document.querySelectorAll("#api-tabs button").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const target = btn.dataset.target;
-        const el = document.getElementById(target);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+      function getCurrentUser() {
+        try {
+          if (window.PORTABLE_IDENTITY && window.PORTABLE_IDENTITY.username) {
+            return window.PORTABLE_IDENTITY.username;
+          }
+        } catch (e) {}
+        return "anonymous";
+      }
+
+      function loadLicenses() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveLicenses(licenses) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(licenses));
+      }
+
+      function isLicensed(api) {
+        const user = getCurrentUser();
+        const licenses = loadLicenses();
+        return !!(licenses[user] && licenses[user][api] && licenses[user][api].active);
+      }
+
+      function activateLicense(api) {
+        const user = getCurrentUser();
+        const licenses = loadLicenses();
+        if (!licenses[user]) licenses[user] = {};
+        const expires = new Date();
+        expires.setMonth(expires.getMonth() + 1); // 1 Monat
+        licenses[user][api] = {
+          active: true,
+          expires: expires.toISOString()
+        };
+        saveLicenses(licenses);
+
+        if (window.PORTABLE && Array.isArray(window.PORTABLE.events)) {
+          window.PORTABLE.events.push({
+            type: "api_license_activated",
+            api,
+            user,
+            at: new Date().toISOString()
+          });
+          if (typeof window.PORTABLE.updateEventsView === "function") {
+            window.PORTABLE.updateEventsView();
+          }
+        }
+      }
+
+      function applyLicenses() {
+        const cards = document.querySelectorAll(".api-card");
+        cards.forEach(card => {
+          const api = card.dataset.api;
+          const snippet = card.querySelector(".api-snippet");
+          if (!snippet) return;
+          if (isLicensed(api)) {
+            snippet.classList.remove("hidden");
+          } else {
+            snippet.classList.add("hidden");
+          }
+        });
+
+        const frontends = document.querySelectorAll(".api-frontend");
+        frontends.forEach(sec => {
+          const api = sec.dataset.api;
+          if (isLicensed(api)) {
+            sec.classList.remove("hidden");
+          } else {
+            sec.classList.add("hidden");
+          }
+        });
+      }
+
+      // Dropdown-Scroll
+      const dd = document.getElementById("api-selector");
+      if (dd) {
+        dd.addEventListener("change", (e) => {
+          const target = e.target.value;
+          if (target === "home") {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            const el = document.getElementById(target);
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      }
+
+      // Tabs-Scroll im Marktplatz
+      document.querySelectorAll("#api-tabs button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.target;
+          const el = document.getElementById(target);
+          if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
-    });
+
+      // BUY-FLOW
+      let currentBuyApi = null;
+      const buyDialog = document.getElementById("buy-dialog");
+      const buyApiName = document.getElementById("buy-api-name");
+      const buyConfirm = document.getElementById("buy-confirm");
+      const buyCancel = document.getElementById("buy-cancel");
+
+      function openBuyDialog(api) {
+        currentBuyApi = api;
+        const card = document.querySelector('.api-card[data-api="' + api + '"]');
+        const title = card ? card.querySelector("h3")?.textContent || api : api;
+        if (buyApiName) buyApiName.textContent = "API: " + title;
+        buyDialog.classList.remove("hidden");
+      }
+
+      function closeBuyDialog() {
+        currentBuyApi = null;
+        buyDialog.classList.add("hidden");
+      }
+
+      document.querySelectorAll(".btn-buy").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const api = btn.dataset.api;
+          if (!api) return;
+          openBuyDialog(api);
+        });
+      });
+
+      if (buyConfirm) {
+        buyConfirm.addEventListener("click", () => {
+          if (!currentBuyApi) return;
+          activateLicense(currentBuyApi);
+          applyLicenses();
+          closeBuyDialog();
+        });
+      }
+
+      if (buyCancel) {
+        buyCancel.addEventListener("click", () => {
+          closeBuyDialog();
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", applyLicenses);
+      applyLicenses();
+    })();
   </script>
 
 </body>

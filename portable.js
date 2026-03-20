@@ -10,6 +10,7 @@
   const btnLogout = document.getElementById("btn-logout");
   const btnToggleNet = document.getElementById("btn-toggle-net");
   const btnDemoEvent = document.getElementById("btn-demo-event");
+  const btnDownload = document.getElementById("btn-download-events");
 
   const identity = PortableIdentity.createIdentity();
   const eventStore = PortableEventStore.createStore(identity);
@@ -23,6 +24,7 @@
     netModel,
     parity,
   });
+  const authUI = PortableAuthUI.createAuthUI();
 
   function render() {
     const state = stateMachine.getState();
@@ -53,18 +55,34 @@
     render();
   }
 
-  btnRegister.addEventListener("click", () => {
+  btnRegister.addEventListener("click", async () => {
+    const input = await authUI.open("register");
+    const passwordHash = await PortableCrypto.sha512(input.password);
+
     const event = PortableEventStore.createEvent(identity, "IDENTITY_REGISTERED", {
+      username: input.username,
+      passwordHash,
       registeredAt: Date.now(),
     });
     applyEvent(event);
   });
 
   btnLogin.addEventListener("click", async () => {
-    const event = PortableEventStore.createEvent(identity, "AUTH_LOGIN_REQUESTED", {});
+    const input = await authUI.open("login");
+    const passwordHash = await PortableCrypto.sha512(input.password);
+
+    const event = PortableEventStore.createEvent(identity, "AUTH_LOGIN_REQUESTED", {
+      username: input.username,
+      passwordHash,
+    });
     applyEvent(event);
 
-    await vigilantFetch.authAction("login", { clientId: identity.clientId });
+    await vigilantFetch.authAction("login", {
+      clientId: identity.clientId,
+      username: input.username,
+      passwordHash,
+    });
+
     const successEvent = PortableEventStore.createEvent(identity, "AUTH_LOGGED_IN", {
       loggedInAt: Date.now(),
     });
@@ -98,6 +116,22 @@
     applyEvent(event);
 
     await vigilantFetch.syncEvents();
+  });
+
+  btnDownload.addEventListener("click", () => {
+    const events = eventStore.getEvents();
+    const blob = new Blob([JSON.stringify(events, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    const filename = `portable-events-${identity.clientId}-${Date.now()}.json`;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   });
 
   // Initial

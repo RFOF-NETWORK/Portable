@@ -11,6 +11,7 @@
   const btnToggleNet = document.getElementById("btn-toggle-net");
   const btnDemoEvent = document.getElementById("btn-demo-event");
   const btnDownload = document.getElementById("btn-download-events");
+  const btnSettings = document.getElementById("btn-settings");
 
   const identity = PortableIdentity.createIdentity();
   const eventStore = PortableEventStore.createStore(identity);
@@ -25,6 +26,7 @@
     parity,
   });
   const authUI = PortableAuthUI.createAuthUI();
+  const settingsUI = PortableSettingsUI.createSettingsUI();
 
   function render() {
     const state = stateMachine.getState();
@@ -132,6 +134,36 @@
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  });
+
+  btnSettings.addEventListener("click", async () => {
+    const events = eventStore.getEvents();
+    const lastIdentityEvent = [...events].reverse().find(
+      (e) => e.type === "IDENTITY_REGISTERED" || e.type === "USERNAME_CHANGED"
+    );
+    const currentUsername =
+      lastIdentityEvent && lastIdentityEvent.payload && lastIdentityEvent.payload.username
+        ? lastIdentityEvent.payload.username
+        : "";
+
+    const input = await settingsUI.open(currentUsername);
+
+    if (input.username && input.username !== currentUsername) {
+      const usernameEvent = PortableEventStore.createEvent(identity, "USERNAME_CHANGED", {
+        username: input.username,
+        changedAt: Date.now(),
+      });
+      applyEvent(usernameEvent);
+    }
+
+    if (input.password) {
+      const passwordHash = await PortableCrypto.sha512(input.password);
+      const passwordEvent = PortableEventStore.createEvent(identity, "PASSWORD_CHANGED", {
+        passwordHash,
+        changedAt: Date.now(),
+      });
+      applyEvent(passwordEvent);
+    }
   });
 
   // Initial

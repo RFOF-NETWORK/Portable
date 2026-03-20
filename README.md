@@ -4,29 +4,38 @@
 ✅ README.md
 ```
 portable/
+│
 ├── README.md
 ├── LICENSE
 ├── index.html
 ├── portable.js
 ├── portable.css
+│
 ├── core/
 │   ├── state-machine.js
 │   ├── event-store.js
 │   ├── vigilant-fetch.js
 │   ├── coldnet-warmnet.js
 │   ├── identity.js
-│   └── parity.js
+│   ├── parity.js
+│   ├── crypto.js
+│   ├── auth-ui.js
+│   └── settings-ui.js
+│
 ├── backend/
 │   ├── auth.md
 │   ├── sync.md
 │   └── status.md
+│
 ├── docs/
 │   ├── architecture.md
 │   ├── state-machine.md
 │   ├── event-model.md
 │   ├── parity.md
 │   ├── coldnet-warmnet.md
-│   └── vigilance.md
+│   ├── vigilance.md
+│   └── settings.md
+│
 └── examples/
     ├── minimal-client.html
     ├── offline-demo.html

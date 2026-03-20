@@ -1,0 +1,22 @@
+# State-Machine
+
+## Dimensionen
+
+identity:
+- UNREGISTERED
+- REGISTERED
+
+auth:
+- LOGGED_OUT
+- LOGGED_IN
+
+net:
+- COLDNET
+- WARMNET
+
+## Übergänge
+
+UNREGISTERED → REGISTERED  
+LOGGED_OUT → LOGGED_IN  
+WARMNET → COLDNET  
+COLDNET → WARMNET
